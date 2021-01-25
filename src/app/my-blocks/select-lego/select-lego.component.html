@@ -1,0 +1,21 @@
+<div class="lego-item__wrapper">
+    <div class="lego-item__wrapper-inner" [class.active]="itemLego.isActive">
+        <div class="lego__brick-image">
+            <div class="switch-color prev-color" (click)="switchColor(currentColorId-1)">
+                <fa-icon [icon]="faCaretLeft"></fa-icon>
+            </div>
+            <div class="bricks-images-wrapper">
+                <div class="bricks-images" >
+                    <div class="brick b-2x2 b-{{currentColor.name}}"></div>
+                </div>
+            </div>
+            <div class="switch-color next-color" (click)="switchColor(currentColorId+1)">
+                <fa-icon [icon]="faCaretRight"></fa-icon>
+            </div>
+        </div>
+        <div class="lego__brick-label">
+            <h1 class="lego__brick-name">{{itemLego.sName}}</h1>
+            <p class="lego__brick-count">Осталось: {{itemLego.iCount > 999 ? 999 : itemLego.iCount}}</p>
+        </div>
+    </div>
+</div>

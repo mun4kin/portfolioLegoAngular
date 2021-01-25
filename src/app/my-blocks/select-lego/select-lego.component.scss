@@ -1,0 +1,145 @@
+/* lego brick */
+$brick-peg-size: 15px;
+$brick-wall-thickness: 6px;
+$brick-square:  $brick-peg-size + $brick-wall-thickness * 2;
+
+
+.brick {
+  color: #f63;
+  background-color: currentColor;
+  padding: $brick-wall-thickness;
+  min-width: $brick-square;
+  min-height: $brick-square;
+  box-shadow: inset -1px -1px 0 rgba(0,0,0,.2), inset 1px 1px 0 rgba(#fff, .2);
+  background-image: radial-gradient(currentColor $brick-peg-size/2, transparent $brick-peg-size/2 + 1px),
+  radial-gradient(rgba(#fff, .6) $brick-peg-size/2, transparent $brick-peg-size/2 + 1px),
+  radial-gradient(rgba(#000, .2) $brick-peg-size/2, transparent $brick-peg-size/2 + $brick-wall-thickness/2),
+  radial-gradient(rgba(#000, .2) $brick-peg-size/2, transparent $brick-peg-size/2 + $brick-wall-thickness/2);
+  background-size: $brick-square $brick-square;
+  background-position: 0px 0px, -.5px -.5px, 0px 0px, $brick-wall-thickness/2 $brick-wall-thickness/2;
+  background-repeat: repeat;
+}
+
+$brick-colors: (
+        'red':  #e53935,
+        'pink':  #d81b60,
+        'purple':  #8e24aa,
+        'deep-purple':  #5e35b1,
+        'indigo':  #3949ab,
+        'blue':  #1e88e5,
+        'light-blue':  #039be5,
+        'cyan':  #00acc1,
+        'teal':  #00897b,
+        'green':  #43a047,
+        'light-green':  #7cb342,
+        'lime':  #c0ca33,
+        'yellow':  #fdd835,
+        'amber':  #ffb300,
+        'orange':  #fb8c00,
+        'deep-orange':  #f4511e,
+        'brown':  #6d4c41,
+        'grey':  #757575,
+        'blue-grey':  #546e7a,
+        'black':  #333333,
+        'white': #ffffff
+);
+
+@each $name, $color in $brick-colors {
+  .b-#{$name} {
+    color: $color;
+  }
+}
+
+@for $x from 1 through 12 {
+  @for $y from 1 through 12 {
+    .b-#{$x}x#{$y} {
+      width: $brick-peg-size * $x + (($brick-wall-thickness*2) * $x);
+      height: $brick-peg-size * $y + (($brick-wall-thickness*2) * $y);
+    }
+  }
+}
+
+.lego-item__wrapper {
+  padding: 0 1rem;
+  min-width: 180px;
+  position: relative;
+}
+
+.lego-item__wrapper-inner {
+  padding: 1.875rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+
+  border-radius: 13.5px;
+  background-color: #ffffff;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, .15);
+  position: relative;
+}
+
+.lego-item__wrapper-inner.active {
+  background: #757575;
+}
+
+.lego-item__wrapper-inner.active .lego__brick-name,
+.lego-item__wrapper-inner.active .lego__brick-count {
+  color: #fff;
+}
+
+.lego__brick-name {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4a4a4a;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.lego__brick-count {
+  margin-top: 0.3125rem;
+  font-size: 1rem;
+  font-weight: 300;
+  color: #4a4a4a;
+}
+
+.lego__pick-color {
+  display: flex;
+  align-items: center;
+  padding-bottom: 1rem;
+}
+
+.lego__color--label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.lego__color {
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+.lego__brick-image {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.bricks-images-wrapper {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  overflow: hidden;
+}
+
+.bricks-images {
+  width: 400%;
+  display: flex;
+}
+
+.switch-color {
+  width: calc(100% - 54px);
+  text-align: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+}

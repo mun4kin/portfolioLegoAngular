@@ -1,0 +1,14 @@
+<div class="lego__menu" >
+    <div class="swiper-container legos" [swiper]="contentSwiperConfig">
+        <div class="swiper-wrapper legos__wrapper">
+            <div class="swiper-slide" *ngIf="blocks$|async as blocks">
+                <app-select-lego
+                        class="legos__item"
+                        *ngFor=" let item of blocks"
+                        (click)="!item.isActive && changeActiveBlock(item.sName)"
+                        [itemLego]="item">
+                </app-select-lego>
+            </div>
+        </div>
+    </div>
+</div>
