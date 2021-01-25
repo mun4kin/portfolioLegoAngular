@@ -1,0 +1,77 @@
+# smartprojects .gitignore
+# рекурсивно игнорит во всем проекте, совпадает с путем root e.g. /node_modules
+**/node_modules
+
+# мы используем npm i, поэтому на не нужен
+**/package-lock.json
+
+# junk от angular-cli, не имеющий отношение к исходному коду
+# убираем это только в root
+/dist
+/tmp
+/out-tsc
+/node_modules
+/documentation
+dependencies
+
+# в главный репозиторий не пушим свои конфиги, сохрняйте их локально
+# добавляйте свои папки с настройками для того чтобы конфиги не коммитились
+# конфиги от ide, текстовых редакторов, git програм and etc..
+
+# webstorm
+**/.idea
+
+# mpeltonen/sbt-idea plugin
+.idea_modules/
+
+# JIRA plugin
+atlassian-ide-plugin.xml
+
+# vs code
+**/.vscode
+
+# sublime text
+**/*.sublime-workspace
+**/*.sublime-project
+
+# tortoisegit
+**/.tgitconfig
+
+# файлы finder на MacOS
+**/.DS_Store
+**/.AppleDouble
+**/.LSOverride
+
+# кэш windows
+**/Thumbs.db
+**/ehthumbs.db
+
+# git
+*.stackdump
+
+# куча мала
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+
+angular/node_modules
+
+/.tgitconfig
+*.stackdump
+package-lock.json
+
+
+## Stuff который коммититься всегда
+
+# Submodule где храняться все зависисмости
+!node_modules/.git
+
