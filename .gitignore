@@ -1,6 +1,6 @@
 # smartprojects .gitignore
 # рекурсивно игнорит во всем проекте, совпадает с путем root e.g. /node_modules
-#*/node_modules
+*/node_modules
 
 # мы используем npm i, поэтому на не нужен
 **/package-lock.json
