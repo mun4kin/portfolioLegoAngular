@@ -18,7 +18,65 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "outputPath": "dist/portfolioLegoAngular",
+            "index": "src/index.html",
+            "main": "src/main.single-spa.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+
+            "scripts": [
+              "node_modules/three/build/three.js",
+              "src/app/assets/addJs/controls.js",
+              "src/app/assets/addJs/Sky.js",
+              "src/app/assets/addJs/Water.js",
+              "src/app/assets/addJs/OrbitControls.js"
+            ],
+            "customWebpackConfig": {
+              "path": "./extra-webpack.config.js"
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "10mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "200kb",
+                  "maximumError": "400kb"
+                }
+              ]
+            }
+          }
+        },
+        "buildServe": {
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
             "outputPath": "dist/portfolioLegoAngular",
             "index": "src/index.html",
@@ -40,7 +98,10 @@
               "src/app/assets/addJs/Sky.js",
               "src/app/assets/addJs/Water.js",
               "src/app/assets/addJs/OrbitControls.js"
-            ]
+            ],
+            "customWebpackConfig": {
+              "path": "./extra-webpack.config.js"
+            }
           },
           "configurations": {
             "production": {
@@ -75,7 +136,7 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "portfolioLegoAngular:build"
+            "browserTarget": "portfolioLegoAngular:buildServe"
           },
           "configurations": {
             "production": {

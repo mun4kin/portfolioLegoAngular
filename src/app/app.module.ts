@@ -15,6 +15,8 @@ import { mainReducer } from './_store';
 
 import { environment } from '../environments/environment';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { APP_BASE_HREF } from '@angular/common';
+import { AppRoutingModule } from './app-routing.module';
 
 
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -32,11 +34,16 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     BrowserModule,
     FontAwesomeModule,
     SwiperModule,
+    AppRoutingModule,
     StoreModule.forRoot(mainReducer),
     EffectsModule.forRoot(),
     environment.production ? [] : StoreDevtoolsModule.instrument( ),
   ],
   providers: [
+    {
+      provide: APP_BASE_HREF,
+      useValue: '/'
+    },
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG

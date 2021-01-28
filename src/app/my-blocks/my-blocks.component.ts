@@ -33,7 +33,7 @@ export class MyBlocksComponent implements OnInit {
   ngOnInit(): void { }
 
   // ===================================================================================================================
-  changeActiveBlock(name: string): void {
+  changeActiveBlock(name: IBlock): void {
     this.store.dispatch(new SetCurrentBlock(name));
 
   }

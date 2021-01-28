@@ -74,7 +74,7 @@ const Water = function ( geometry, options ) {
         alpha: { value: 1.0 },
         time: { value: 0.0 },
         size: { value: 1.0 },
-        distortionScale: { value: 20.0 },
+        distortionScale: { value: 50.0 },
         textureMatrix: { value: new THREE.Matrix4() },
         sunColor: { value: new THREE.Color( 0x7F7F7F ) },
         sunDirection: { value: new THREE.Vector3( 0.70707, 0.70707, 0 ) },

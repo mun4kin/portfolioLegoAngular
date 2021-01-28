@@ -5,7 +5,7 @@
                 <app-select-lego
                         class="legos__item"
                         *ngFor=" let item of blocks"
-                        (click)="!item.isActive && changeActiveBlock(item.sName)"
+                        (click)="!item.isActive && changeActiveBlock(item)"
                         [itemLego]="item">
                 </app-select-lego>
             </div>

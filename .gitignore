@@ -7,7 +7,7 @@
 
 # junk от angular-cli, не имеющий отношение к исходному коду
 # убираем это только в root
-/dist
+
 /tmp
 /out-tsc
 /node_modules

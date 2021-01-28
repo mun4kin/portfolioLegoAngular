@@ -1,105 +1,74 @@
 import * as THREE from 'three';
-import { metal } from './metal';
+
 
 export class Lego {
-  STUD_WIDTH: number;
-  STUD_SPACING: number;
-  PLATE_HEIGHT: number;
-  STUD_HEIGHT: number;
-  STUD_PADDING: number;
-  STUD_NUM_SIDES: number;
-  size: any;
-  mesh: any;
-
-
-  constructor(colorCode, w, h, d, opacityVal = 1) {
-    // Const data = new DataToservises;
-    this.STUD_WIDTH = 15.18998;
-    this.STUD_SPACING = this.STUD_WIDTH / 1.5;
-    this.PLATE_HEIGHT = this.STUD_SPACING;
-    this.STUD_HEIGHT = this.PLATE_HEIGHT / 1.88;
-    this.STUD_PADDING = this.STUD_WIDTH / 3.2;
-    this.STUD_NUM_SIDES = 32;
-    w = w || 1;
-    h = h || 1;
-    d = d || 3;
-    // THREE.Object3D.call( this );
-    const color = colorCode;
-    const opacity = opacityVal;
-    const image = document.createElement('img');
-    const roughnessMap = new THREE.Texture(image);
-
-    roughnessMap.wrapS = THREE.RepeatWrapping;
-    roughnessMap.wrapT = THREE.RepeatWrapping;
-    roughnessMap.repeat.set(3, 3);
-    image.src = metal;
-    image.onload = function ( ) {
-      roughnessMap.needsUpdate = true;
-
+  mesh: THREE.Mesh;
+  size: { width: number, height: number, depth: number };
+  CUBE_SIZE: number = 50;
+  CUBE_HEIGHT: number = this.CUBE_SIZE * 1.2 / 3;
+  HALF_CUBE_SIZE: number = this.CUBE_SIZE / 2;
+  STUD_HEIGHT: number = 10;
+  STUD_WIDTH: number = 15;
+  material1:any;
+  constructor(color, w = 1, h = 1, d = 3, opacity = 1) {
+    this.size = {
+      width: this.CUBE_SIZE * w,
+      height: this.CUBE_SIZE * h,
+      depth: this.CUBE_HEIGHT * d,
     };
-
-
-    roughnessMap.magFilter = THREE.NearestFilter;
 
     const faceMaterial = new THREE.MeshStandardMaterial({
       color,
       opacity,
-      transparent: true
+      roughness: 0.3,
+      metalness: 0.90,
+      // roughnessMap: this.getTexture(w, h),
+      // map: this.getTexture(w / 2, h / 2),
 
+      alphaTest: 0.2,
+      side: THREE.DoubleSide
     });
 
+    // =================================================================================================================
+    this.mesh = new THREE.Mesh(
+      new THREE.BoxGeometry(this.size.width, this.size.depth, this.size.height),
+      faceMaterial
+    );
 
-    faceMaterial.roughnessMap = roughnessMap;
-    const width = this.computePlateLength(w);
-    const length = this.computePlateLength(h);
-    const depth = this.computePlateDepth(d);
+    this.mesh.position.set(this.size.width / 2, this.size.depth / 2, this.size.height / 2);
 
 
-    // Light = new THREE.PointLight( 0xff0000, 1, 100 );
-    this.mesh = new THREE.Mesh(new THREE.BoxGeometry(width, depth, length), faceMaterial);
     const stud = new THREE.Mesh(new THREE.CylinderGeometry(
-      this.STUD_WIDTH / 2,
-      this.STUD_WIDTH / 2,
+      this.STUD_WIDTH,
+      this.STUD_WIDTH,
       this.STUD_HEIGHT,
-      this.STUD_NUM_SIDES
-    ), faceMaterial);
+      32
+    ));
+
 
     for (let i = 0; i < w; i++) {
       for (let j = 0; j < h; j++) {
-        stud.position.y = depth / 2 + this.STUD_HEIGHT / 2;
-        stud.position.x =
-          this.STUD_WIDTH / 2 + this.STUD_PADDING + i * (this.STUD_WIDTH + this.STUD_SPACING) - width / 2;
-        stud.position.z =
-          this.STUD_WIDTH / 2 + this.STUD_PADDING + j * (this.STUD_WIDTH + this.STUD_SPACING) - length / 2;
+        stud.position.y = this.size.depth / 2 + this.STUD_HEIGHT / 2;
+        stud.position.x = -this.size.width / 2 + this.HALF_CUBE_SIZE + this.CUBE_SIZE * i;
+        stud.position.z = this.size.height / 2 - this.HALF_CUBE_SIZE - this.CUBE_SIZE * j;
         stud.matrixAutoUpdate = false;
         stud.updateMatrix();
+        // @ts-ignore
         this.mesh.geometry.merge(stud.geometry, stud.matrix);
       }
     }
-
-    this.size = {
-      width: w,
-      height: h,
-      depth: d
-    };
-
-
   }
 
-  public color(val) {
-    const codes = {
-      black: 0x191a1b,
-      white: 0xfafafa
-    };
-    return codes[val];
+  public getTexture(x, y) {
+    return new THREE.TextureLoader().load('./assets/textures/4.png', (texture: any): void => {
+      texture.repeat.set(x, y);
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.anisotropy = 4;
+
+
+    });
   }
 
-  public computePlateLength(studs) {
-    return this.STUD_PADDING * 2 + studs * (this.STUD_WIDTH + this.STUD_SPACING) - this.STUD_SPACING;
-  }
-
-  public computePlateDepth(depth) {
-    return depth * this.PLATE_HEIGHT;
-  }
 
 }

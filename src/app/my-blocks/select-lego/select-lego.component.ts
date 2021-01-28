@@ -4,7 +4,7 @@ import {
 import { faCaretLeft, faCaretRight } from '@fortawesome/free-solid-svg-icons';
 import { Store } from '@ngrx/store';
 import { IStore } from '../../_store';
-import { SetBlockColor, SetCurrentBlock } from '../../_store/actions/block.action';
+import { SetCurrentBlock } from '../../_store/actions/block.action';
 import { IBlock } from '../../_store/types/block.type';
 
 interface IColor{
@@ -109,7 +109,6 @@ export class SelectLegoComponent implements OnInit {
   ];
   faCaretRight=faCaretRight
   faCaretLeft=faCaretLeft
-  brickColor: IColor;
   currentColorId:number;
   currentColor :IColor;
   // ===================================================================================================================
@@ -126,8 +125,11 @@ export class SelectLegoComponent implements OnInit {
   switchColor(num: number): void {
     (num > this.colors.length - 1) && (num = 0);
     (num < 0) && (num = this.colors.length - 1);
-    this.store.dispatch(new SetCurrentBlock(this.itemLego.sName));
-    this.store.dispatch(new SetBlockColor(this.colors[num].hex));
+    this.store.dispatch(new SetCurrentBlock({
+      ...this.itemLego,
+      sBrickColor: this.colors[num].hex
+    }));
+
   }
 
 }
