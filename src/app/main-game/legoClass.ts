@@ -59,16 +59,16 @@ export class Lego {
     }
   }
 
-  public getTexture(x, y) {
-    return new THREE.TextureLoader().load('./assets/textures/4.png', (texture: any): void => {
-      texture.repeat.set(x, y);
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.wrapS = THREE.RepeatWrapping;
-      texture.anisotropy = 4;
-
-
-    });
-  }
+  // public getTexture(x, y) {
+  //   return new THREE.TextureLoader().load('./assets/textures/4.png', (texture: any): void => {
+  //     texture.repeat.set(x, y);
+  //     texture.wrapT = THREE.RepeatWrapping;
+  //     texture.wrapS = THREE.RepeatWrapping;
+  //     texture.anisotropy = 4;
+  //
+  //
+  //   });
+  // }
 
 
 }
