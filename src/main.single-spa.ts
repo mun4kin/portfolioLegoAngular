@@ -19,7 +19,7 @@ const lifecycles = singleSpaAngular({
   template: '<app-root />',
   Router,
   NgZone,
-  domElementGetter: () => document.getElementById('angular-app')
+  domElementGetter: () => document.getElementById('lego')
 });
 
 export const bootstrap = lifecycles.bootstrap;

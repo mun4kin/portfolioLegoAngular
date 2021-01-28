@@ -1,6 +1,7 @@
 {
   "name": "portfolio-lego-angular",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "main": "dist/main-es2015.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
