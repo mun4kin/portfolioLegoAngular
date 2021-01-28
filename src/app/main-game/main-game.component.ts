@@ -10,6 +10,7 @@ import { Intersection } from 'three/src/core/Raycaster';
 import { IBlock } from '../_store/types/block.type';
 import { SetCurrentBlock } from '../_store/actions/block.action';
 import { dino } from './dino';
+import { waterT } from './texture';
 
 declare let THREE_WATER: any;
 /** Подключение JS библиотеки  с небом*/
@@ -178,18 +179,13 @@ export class MainGameComponent implements AfterViewInit, OnInit {
 
     this.camera.lookAt(controls.target);
     const waterGeometry = new THREE.PlaneBufferGeometry(30000, 30000);
-    const image = document.createElement('img');
-    const roughnessMap = new THREE.Texture(image);
-
-    roughnessMap.wrapS = THREE.RepeatWrapping;
-    roughnessMap.wrapT = THREE.RepeatWrapping;
 
     this.water = new THREE_WATER.Water(
       waterGeometry,
       {
         textureWidth: 512,
         textureHeight: 512,
-        waterNormals: new THREE.TextureLoader().load('./assets/textures/waternormals.jpg', (texture: any): void => {
+        waterNormals: THREE.ImageUtils.loadTexture( waterT, undefined, (texture: any): void => {
           texture.wrapT = THREE.RepeatWrapping;
           texture.wrapS = THREE.RepeatWrapping;
         }),
