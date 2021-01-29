@@ -6,13 +6,8 @@ const routes: Routes = [
   {
     path: 'lego',
     component: AppComponent
-  },
+  }
 
-  {
-    path: '**',
-    redirectTo: '/lego',
-
-  },
 
 ];
 @NgModule({
