@@ -35,11 +35,6 @@
             ],
 
             "scripts": [
-              "node_modules/three/build/three.js",
-              "src/app/assets/addJs/controls.js",
-              "src/app/assets/addJs/Sky.js",
-              "src/app/assets/addJs/Water.js",
-              "src/app/assets/addJs/OrbitControls.js"
             ],
             "customWebpackConfig": {
               "path": "./extra-webpack.config.js"
@@ -94,11 +89,7 @@
             ],
 
             "scripts": [
-              "node_modules/three/build/three.js",
-              "src/app/assets/addJs/controls.js",
-              "src/app/assets/addJs/Sky.js",
-              "src/app/assets/addJs/Water.js",
-              "src/app/assets/addJs/OrbitControls.js"
+
             ],
             "customWebpackConfig": {
               "path": "./extra-webpack.config.js"

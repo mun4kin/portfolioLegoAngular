@@ -11,12 +11,13 @@ import { IBlock } from '../_store/types/block.type';
 import { SetCurrentBlock } from '../_store/actions/block.action';
 import { dino } from './dino';
 import { waterT } from './texture';
-
-declare let THREE_WATER: any;
-/** Подключение JS библиотеки  с небом*/
-declare let THREE_SKY: any;
 /** Подключение JS библиотеки  с управлением*/
-declare let THREE_ORBIT: any;
+// declare let THREE_ORBIT: any;
+import { THREE_ORBIT } from './assets/OrbitControls';
+import { THREE_WATER } from './assets/Water';
+import { THREE_SKY } from './assets/Sky';
+
+
 /** Замыкаем для обращения из событий*/
 let that: any;
 
@@ -470,6 +471,7 @@ export class MainGameComponent implements AfterViewInit, OnInit {
       });
       break;
     case 80:
+      // eslint-disable-next-line no-case-declarations
       const exp = that.objects.filter(i =>
         ~i.name.indexOf('block @')).map(i => {
         return {

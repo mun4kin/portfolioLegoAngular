@@ -1,22 +1,6 @@
-/**
- * @author qiao / https://github.com/qiao
- * @author mrdoob / http://mrdoob.com
- * @author alteredq / http://alteredqualia.com/
- * @author WestLangley / http://github.com/WestLangley
- * @author erich666 / http://erichaines.com
- */
+import * as THREE from 'three';
 
-/*
- * This set of controls performs orbiting, dollying (zooming), and panning.
- * Unlike TrackballControls, it maintains the "up" direction object.up (+Y by default).
- *
- *    Orbit - left mouse / touch: one-finger move
- *    Zoom - middle mouse, or mousewheel / touch: two-finger spread or squish
- *    Pan - right mouse, or left mouse + ctrl/metaKey, or arrow keys / touch: two-finger move
- */
-
-
-OrbitControls = function ( object, domElement ) {
+const OrbitControls = function ( object, domElement ) {
 
   this.object = object;
 
@@ -228,8 +212,8 @@ OrbitControls = function ( object, domElement ) {
        */
 
       if ( zoomChanged ||
-				lastPosition.distanceToSquared( scope.object.position ) > EPS ||
-				8 * ( 1 - lastQuaternion.dot( scope.object.quaternion ) ) > EPS ) {
+        lastPosition.distanceToSquared( scope.object.position ) > EPS ||
+        8 * ( 1 - lastQuaternion.dot( scope.object.quaternion ) ) > EPS ) {
 
         scope.dispatchEvent( changeEvent );
 
@@ -1134,4 +1118,4 @@ Object.defineProperties( OrbitControls.prototype, {
   }
 
 } );
-const THREE_ORBIT = { OrbitControls };
+export const THREE_ORBIT = { OrbitControls };

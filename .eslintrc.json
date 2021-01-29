@@ -7,7 +7,7 @@
     "browser": true,
     "node": true
   },
-  "ignorePatterns": ["*.{js,jsx}", "**/__tests__/*", "**/build/*", "**/node_modules/*", "**/serviceWorker.ts"],
+  "ignorePatterns": ["*.{js,jsx}", "**/__tests__/*", "**/build/*","**/assets/*", "**/node_modules/*", "**/serviceWorker.ts"],
   "rules": {
     //==================================
     "no-extra-parens": "off",
