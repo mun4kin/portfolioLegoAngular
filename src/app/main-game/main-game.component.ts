@@ -11,15 +11,13 @@ import { IBlock } from '../_store/types/block.type';
 import { SetCurrentBlock } from '../_store/actions/block.action';
 import { dino } from './dino';
 import { waterT } from './texture';
-/** Подключение JS библиотеки  с управлением*/
-// declare let THREE_ORBIT: any;
 import { THREE_ORBIT } from './assets/OrbitControls';
 import { THREE_WATER } from './assets/Water';
 import { THREE_SKY } from './assets/Sky';
 
 
 /** Замыкаем для обращения из событий*/
-let that: any;
+let that: MainGameComponent;
 
 // =====================================================================================================================
 @Component({
@@ -333,11 +331,11 @@ export class MainGameComponent implements AfterViewInit, OnInit {
 
     if (intersects.length > 0) {
       const intersect = intersects[0];
-
       switch (type) {
       case 'click':
         if (that.isShiftDown) {
-          if (intersect.object !== that.plane && !intersect.object.notDelete) {
+          // @ts-ignore
+          if (intersect.object !== that.plane && !intersect.object.notDelete ) {
             that.scene.remove(intersect.object);
             that.objects.splice(that.objects.indexOf(intersect.object), 1);
           }
@@ -362,8 +360,21 @@ export class MainGameComponent implements AfterViewInit, OnInit {
 
         break;
       default:
-        that.rollOverMesh.position.copy(intersect.point)
+        const p = intersect.point.clone();
+        // i.geometry.parameters.width / 50,
+        //    iHeight: i.geometry.parameters.depth / 50,
+        // const iW = that.rollOverMesh.geometry.parameters;
+        //
+        // if (iW.depth / 2 > iw.s.width / 2) {
+        //   p.z += that.rollOverMesh.geometry.parameters.depth / 2;
+        // } else {
+        //   p.x += that.rollOverMesh.geometry.parameters.width / 2;
+        // }
+
+
+        that.rollOverMesh.position.copy(p)
           .add(intersect.face.normal);
+
         this.correctMashPosition(that.rollOverMesh, intersect);
         break;
       }

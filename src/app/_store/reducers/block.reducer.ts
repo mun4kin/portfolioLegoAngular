@@ -14,7 +14,7 @@ export const initialState:IBlockStore = {
       iWidth: 1,
       iHeight: 1,
       iCount: 100,
-      isActive: true,
+      isActive: false,
       sBrickColor: '#e53935'
     },
     {
@@ -54,18 +54,19 @@ export const initialState:IBlockStore = {
       iWidth: 2,
       iHeight: 10,
       iCount: 100,
-      isActive: false,
+      isActive: true,
       sBrickColor: '#e53935'
     }
   ],
-  activeBlock: {
-    id: -1,
-    iWidth: 1,
-    iHeight: 1,
-    iCount: 100,
-    isActive: true,
-    sBrickColor: '#e53935'
-  },
+  activeBlock:
+    {
+      id: 5,
+      iWidth: 2,
+      iHeight: 10,
+      iCount: 100,
+      isActive: true,
+      sBrickColor: '#e53935'
+    }
 
 };
 
