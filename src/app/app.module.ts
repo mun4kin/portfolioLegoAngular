@@ -19,7 +19,7 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 
 
-const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   direction: 'horizontal',
   slidesPerView: 'auto'
 };
