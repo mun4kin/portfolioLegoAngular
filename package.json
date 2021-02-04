@@ -1,7 +1,7 @@
 {
   "name": "lego-proj",
   "version": "0.0.1",
-  "main": "dist/main-es2015.js",
+  "main": "module/main-es2015.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
