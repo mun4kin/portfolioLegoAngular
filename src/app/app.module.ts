@@ -4,9 +4,7 @@ import { AppComponent } from './app.component';
 import { MainGameComponent } from './main-game/main-game.component';
 import { MyBlocksComponent } from './my-blocks/my-blocks.component';
 import { SelectLegoComponent } from './my-blocks/select-lego/select-lego.component';
-import {
-  SWIPER_CONFIG, SwiperConfigInterface, SwiperModule
-} from 'ngx-swiper-wrapper';
+import { SwiperModule } from 'ngx-swiper-wrapper';
 
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
@@ -19,10 +17,6 @@ import { APP_BASE_HREF } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 
 
-export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
-  direction: 'horizontal',
-  slidesPerView: 'auto'
-};
 @NgModule({
   declarations: [
     AppComponent,
@@ -44,10 +38,6 @@ export const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
       provide: APP_BASE_HREF,
       useValue: '/'
     },
-    {
-      provide: SWIPER_CONFIG,
-      useValue: DEFAULT_SWIPER_CONFIG
-    }
   ],
   bootstrap: [AppComponent]
 })

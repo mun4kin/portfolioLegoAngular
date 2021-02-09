@@ -1,6 +1,8 @@
 .root__wrapper{
   display: flex;
   flex-direction: column;
+  background: white;
+  padding: 30px;
 }
 .root__game{
   flex-grow: 1;

@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { Store } from '@ngrx/store';
 import { IStore } from '../_store';
 import { SetCurrentBlock } from '../_store/actions/block.action';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IBlock } from '../_store/types/block.type';
+import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 @Component({
   selector: 'app-my-blocks',
@@ -19,10 +19,8 @@ export class MyBlocksComponent implements OnInit {
     direction: 'horizontal',
     slidesPerView: 'auto',
     mousewheel: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    }
+    // freeMode: true,
+    setWrapperSize: true,
 
   };
   // ===================================================================================================================
